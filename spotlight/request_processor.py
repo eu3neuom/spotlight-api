@@ -1,4 +1,5 @@
 import flask
+from spotlight.helpers import constants as constants
 from spotlight.helpers.generic_helpers import generic_error_response_with_code
 from PIL import Image
 import io
@@ -18,6 +19,6 @@ def process_lighten_request(app):
             response.headers.set('Content-Disposition', 'attachment', filename='result.png')
             return response
         else:
-            return generic_error_response_with_code("Missing file")
+            return generic_error_response_with_code("Missing file", constants.ERROR_CODES["BadRequest"])
     else:
-        return generic_error_response_with_code("Bad method")
+        return generic_error_response_with_code("Bad method", constants.ERROR_CODES["BadRequest"])
