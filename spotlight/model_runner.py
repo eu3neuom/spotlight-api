@@ -41,7 +41,7 @@ def run(image_dir_path):
         model.test()
         visuals = model.get_current_visuals()
         for label, im_data in visuals.items():
-            if label != 'fake':
+            if label != "fake":
                 continue
             im = util.tensor2im(im_data)
             image_pil = Image.fromarray(im)

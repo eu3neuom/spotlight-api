@@ -16,8 +16,10 @@ def lighten():
         return request_processor.process_lighten_request()
     except Exception as exc:
         logger.error(f"Error while processing request: {exc}")
-        return generic_error_response_with_code(f"Internal server error", constants.ERROR_CODES["InternalServerError"])
+        return generic_error_response_with_code(
+            f"Internal server error", constants.ERROR_CODES["InternalServerError"]
+        )
 
 
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    app.run(host="0.0.0.0")

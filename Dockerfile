@@ -10,4 +10,4 @@ RUN pip install -r ./requirements.txt
 COPY . /spotlight
 ENV CHECKPOINTS_DIR /spotlight/model/checkpoints/
 RUN sudo chmod -R a+rwx /spotlight/
-CMD ["python","app.py"]~
+CMD ["python","app.py","--gpu_ids=-1"]~

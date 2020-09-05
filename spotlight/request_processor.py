@@ -29,18 +29,29 @@ class RequestProcessor(object):
                     img_pil = model_runner.run(dirpath)
                 except Exception as exc:
                     logger.error(f"Model crashed on image {file_name}: {exc}")
-                    return generic_error_response_with_code(f"Model crashed when lightening the image {file_name}", constants.ERROR_CODES["InternalServerError"])
+                    return generic_error_response_with_code(
+                        f"Model crashed when lightening the image {file_name}",
+                        constants.ERROR_CODES["InternalServerError"],
+                    )
                 img_stream = io.BytesIO()
                 img_pil.save(img_stream, format="PNG")
                 img_stream.seek(0)
-                logger.info(f"Image {file_name} has been processed. Sending back to user..")
+                logger.info(
+                    f"Image {file_name} has been processed. Sending back to user.."
+                )
 
                 response = self._app.response_class(img_stream, mimetype="image/png")
-                response.headers.set('Content-Disposition', 'attachment', filename='result.png')
+                response.headers.set(
+                    "Content-Disposition", "attachment", filename="result.png"
+                )
                 return response
             else:
                 logger.error("No file specified in request")
-                return generic_error_response_with_code("Missing file", constants.ERROR_CODES["BadRequest"])
+                return generic_error_response_with_code(
+                    "Missing file", constants.ERROR_CODES["BadRequest"]
+                )
         else:
             logger.error("User tried other method than POST")
-            return generic_error_response_with_code("Bad method", constants.ERROR_CODES["BadRequest"])
+            return generic_error_response_with_code(
+                "Bad method", constants.ERROR_CODES["BadRequest"]
+            )
