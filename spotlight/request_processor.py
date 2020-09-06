@@ -7,6 +7,7 @@ import tempfile
 import logging
 from werkzeug.utils import secure_filename
 import os
+import shutil
 
 logger = logging.getLogger("app")
 
@@ -33,6 +34,9 @@ class RequestProcessor(object):
                         f"Model crashed when lightening the image {file_name}",
                         constants.ERROR_CODES["InternalServerError"],
                     )
+                finally:
+                    shutil.rmtree(dirpath)
+
                 img_stream = io.BytesIO()
                 img_pil.save(img_stream, format="PNG")
                 img_stream.seek(0)
