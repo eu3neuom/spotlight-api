@@ -1,13 +1,15 @@
-import flask
-from spotlight.helpers import constants as constants
-from spotlight.helpers.generic_helpers import generic_error_response_with_code
 import io
-import spotlight.model_runner as model_runner
-import tempfile
 import logging
-from werkzeug.utils import secure_filename
 import os
 import shutil
+import tempfile
+
+import flask
+from werkzeug.utils import secure_filename
+
+import spotlight.model_runner as model_runner
+from spotlight.helpers import constants as constants
+from spotlight.helpers.generic_helpers import generic_error_response_with_code
 
 logger = logging.getLogger("app")
 

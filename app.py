@@ -1,9 +1,10 @@
+import logging
+
 from flask import Flask, jsonify
 
-from spotlight.request_processor import RequestProcessor
-from spotlight.helpers.generic_helpers import generic_error_response_with_code
 import spotlight.helpers.constants as constants
-import logging
+from spotlight.helpers.generic_helpers import generic_error_response_with_code
+from spotlight.request_processor import RequestProcessor
 
 logger = logging.getLogger("app")
 app = Flask(__name__)

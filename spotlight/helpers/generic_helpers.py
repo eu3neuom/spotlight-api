@@ -1,4 +1,5 @@
 from flask import jsonify
+
 from spotlight.helpers import constants as constants
 
 

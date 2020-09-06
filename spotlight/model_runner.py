@@ -1,9 +1,11 @@
-from model.options.test_options import TestOptions
+import os
+
+from PIL import Image
+
 from model.data import create_dataset
 from model.models import create_model
+from model.options.test_options import TestOptions
 from model.util import util
-import os
-from PIL import Image
 
 opt = None
 model = None
